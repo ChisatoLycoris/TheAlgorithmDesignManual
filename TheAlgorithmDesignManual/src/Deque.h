@@ -45,7 +45,7 @@ public:
 	/// return true if Deque is empty
 	/// </summary>
 	/// <returns> true if the Deque is empty </returns>
-	bool isEmpty() { return size() == 0; };
+	bool isEmpty() { return size() == 0; }
 
 	/// <summary>
 	/// print out all items in the deque, seperate by the space, " "
