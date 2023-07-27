@@ -100,6 +100,10 @@ inline T ArrayDeque<T>::removeLast()
 template<class T>
 T ArrayDeque<T>::get(int index) const
 {
+	if (index < 0 || index >= itemQty)
+	{
+		throw std::out_of_range("Index out of bounds of the deque.");
+	}
 	int dequeIndex = convertIndex(index);
 	return items[dequeIndex];
 }
