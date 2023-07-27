@@ -6,5 +6,6 @@
   <ItemGroup>
     <ClInclude Include="src\Deque.h" />
     <ClInclude Include="src\LinkedListDeque.h" />
+    <ClInclude Include="src\ArrayDeque.h" />
   </ItemGroup>
 </Project>

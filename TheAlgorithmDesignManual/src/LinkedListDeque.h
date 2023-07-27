@@ -15,7 +15,7 @@ class LinkedListDeque : public Deque<T>
 		Node();
 		Node(T item, Node* prev, Node* next);
 	};
-	int listSize;
+	int itemQty;
 	Node* sentinel;
 public:
 	LinkedListDeque();
@@ -47,14 +47,14 @@ LinkedListDeque<T>::Node::Node(T item, Node* prev, Node* next)
 template<class T>
 LinkedListDeque<T>::LinkedListDeque()
 {
-	listSize = 0;
+	itemQty = 0;
 	sentinel = new Node();
 }
 
 template<class T>
 int LinkedListDeque<T>::size() const
 {
-	return listSize;
+	return itemQty;
 }
 
 template<class T>
@@ -63,7 +63,7 @@ void LinkedListDeque<T>::addFirst(T item)
 	Node* newNode = new Node(item, sentinel, sentinel->next);
 	sentinel->next->prev = newNode;
 	sentinel->next = newNode;
-	listSize += 1;
+	itemQty += 1;
 }
 
 template<class T>
@@ -72,7 +72,7 @@ void LinkedListDeque<T>::addLast(T item)
 	Node* newNode = new Node(item, sentinel->prev, sentinel);
 	sentinel->prev->next = newNode;
 	sentinel->prev = newNode;
-	listSize += 1;
+	itemQty += 1;
 }
 
 template<class T>
@@ -90,7 +90,7 @@ void LinkedListDeque<T>::printDeque() const
 template<class T>
 T LinkedListDeque<T>::removeFirst()
 {
-	if (listSize == 0)
+	if (itemQty == 0)
 	{
 		throw std::invalid_argument("Call removeFirst() with size 0.");
 	}
@@ -99,14 +99,14 @@ T LinkedListDeque<T>::removeFirst()
 	sentinel->next->prev = sentinel;
 	T item = first->item;
 	delete first;
-	listSize -= 1;
+	itemQty -= 1;
 	return item;
 }
 
 template<class T>
 T LinkedListDeque<T>::removeLast()
 {
-	if (listSize == 0)
+	if (itemQty == 0)
 	{
 		throw std::invalid_argument("Call removeLast() with size 0.");
 	}
@@ -115,14 +115,14 @@ T LinkedListDeque<T>::removeLast()
 	sentinel->prev->next = sentinel;
 	T item = last->item;
 	delete last;
-	listSize -= 1;
+	itemQty -= 1;
 	return item;
 }
 
 template<class T>
 T LinkedListDeque<T>::get(int index) const
 {
-	if (index < 0 || index >= listSize)
+	if (index < 0 || index >= itemQty)
 	{
 		throw std::out_of_range("Index out of bounds of the deque.");
 	}

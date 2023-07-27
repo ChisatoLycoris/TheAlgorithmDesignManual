@@ -1,9 +1,10 @@
 #include <iostream>
 #include "LinkedListDeque.h"
+#include "ArrayDeque.h"
 
 int main()
 {
-	Deque<int>* deque = new LinkedListDeque<int>();
+	Deque<int>* deque = new ArrayDeque<int>();
 	deque->addFirst(1);
 	deque->printDeque();
 	std::cout << "size: " << deque->size() << std::endl;
@@ -24,5 +25,4 @@ int main()
 	std::cout << "size: " << deque->size() << std::endl;
 
 	std::cout << "remove1: " << remove1 << ", remove2: " << remove2 << std::endl;
-	std::cout << "size: " << deque->size() << std::endl;
 }

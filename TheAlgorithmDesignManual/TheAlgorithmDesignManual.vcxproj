@@ -22,6 +22,7 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ArrayDeque.h" />
     <ClInclude Include="src\Deque.h" />
     <ClInclude Include="src\LinkedListDeque.h" />
   </ItemGroup>
