@@ -14,6 +14,7 @@ class ArrayDeque : public Deque<T>
 	int convertIndex(int dequeIndex) const;
 public:
 	ArrayDeque();
+	~ArrayDeque();
 	int size() const override;
 	void addFirst(T item) override;
 	void addLast(T item) override;
@@ -30,6 +31,12 @@ ArrayDeque<T>::ArrayDeque()
 	itemQty = 0;
 	startIndex = 0;
 	items = new T[arrayLength];
+}
+
+template<class T>
+ArrayDeque<T>::~ArrayDeque()
+{
+	delete[] items;
 }
 
 template<class T>
@@ -76,7 +83,6 @@ T ArrayDeque<T>::removeFirst()
 	}
 	resize();
 	T item = items[startIndex];
-	items[startIndex] = NULL;
 	startIndex = (startIndex >= arrayLength - 1) ? 0 : startIndex + 1;
 	itemQty -= 1;
 	return item;
@@ -92,7 +98,6 @@ inline T ArrayDeque<T>::removeLast()
 	resize();
 	int lastIndex = convertIndex(itemQty - 1);
 	T item = items[lastIndex];
-	items[lastIndex] = NULL;
 	itemQty -= 1;
 	return item;
 }

@@ -14,11 +14,13 @@ class LinkedListDeque : public Deque<T>
 		Node* next;
 		Node();
 		Node(T item, Node* prev, Node* next);
+		~Node();
 	};
 	int itemQty;
 	Node* sentinel;
 public:
 	LinkedListDeque();
+	~LinkedListDeque();
 	int size() const override;
 	void addFirst(T item) override;
 	void addLast(T item) override;
@@ -45,10 +47,25 @@ LinkedListDeque<T>::Node::Node(T item, Node* prev, Node* next)
 }
 
 template<class T>
+LinkedListDeque<T>::Node::~Node()
+{
+}
+
+template<class T>
 LinkedListDeque<T>::LinkedListDeque()
 {
 	itemQty = 0;
 	sentinel = new Node();
+}
+
+template<class T>
+LinkedListDeque<T>::~LinkedListDeque()
+{
+	for (Node* temp = sentinel; itemQty >=0; itemQty--) {
+		Node* currentNode = temp;
+		delete currentNode;
+		temp = temp->next;
+	}
 }
 
 template<class T>
