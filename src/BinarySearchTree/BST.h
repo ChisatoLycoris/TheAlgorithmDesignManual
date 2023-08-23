@@ -7,12 +7,13 @@ template<class T>
 class BST : public BinarySearchTree<T> {
 private:
     class Node {
+    public:
         T item;
         Node* left;
         Node* right;
         Node(const T& item);
         ~Node();
-    }
+    };
     int itemQty;
     Node* root;
     bool search(Node* root, const T& item) const;
@@ -33,7 +34,7 @@ public:
 
 template<class T>
 BST<T>::Node::Node(const T& item) {
-    this.item = item;
+    this->item = item;
     left = nullptr;
     right = nullptr;
 }
@@ -83,16 +84,16 @@ bool BST<T>::search(const T& item) const {
 }
 
 template<class T>
-BST<T>::Node* BST<T>::insert(BST<T>::Node* root, const T& item) {
+typename BST<T>::Node* BST<T>::insert(BST<T>::Node* root, const T& item) {
     if (root == nullptr) {
         itemQty++;
         return new Node(item);
     }
     if (root->item > item) {
-        item->left = insert(root->left, item);
+        root->left = insert(root->left, item);
     }
     else if (root->item < item) {
-        item->right = insert(root->right, item);
+        root->right = insert(root->right, item);
     }
     return root;
 }
@@ -103,7 +104,7 @@ void BST<T>::insertion(const T& item) {
 }
 
 template<class T>
-BST<T>::Node* BST<T>::remove(BST<T>::Node* root, const T& item) {
+typename BST<T>::Node* BST<T>::remove(BST<T>::Node* root, const T& item) {
     if (root == nullptr) return root;
     if (root->item > item) {
         root->left = remove(root->left, item);
@@ -133,7 +134,7 @@ BST<T>::Node* BST<T>::remove(BST<T>::Node* root, const T& item) {
 }
 
 template<class T>
-BST<T>::Node* BST<T>::removeBiggerSmallest(BST<T>::Node* root) {
+typename BST<T>::Node* BST<T>::removeBiggerSmallest(BST<T>::Node* root) {
     Node* parent = root->right;
     Node* child = root->right->left;
     if (child == nullptr) {
@@ -157,19 +158,21 @@ void BST<T>::deletion(const T& item) {
 
 template<class T>
 const T& BST<T>::top() const {
-    if (isEmpty()) throw std::invalid_argument("Call top() with size 0.");
+    if (itemQty == 0) throw std::invalid_argument("Call top() with size 0.");
     return root->item;
 }
 
 template<class T>
 void BST<T>::printTree() const {
+    std::cout << "[";
     printTree(root);
+    std::cout << "]" << std::endl;
 }
 
 template<class T>
 void BST<T>::printTree(BST<T>::Node* root) const {
     if (root == nullptr) return;
     printTree(root->left);
-    std::cout << root->item;
+    std::cout << root->item << ", ";
     printTree(root->right);
 }

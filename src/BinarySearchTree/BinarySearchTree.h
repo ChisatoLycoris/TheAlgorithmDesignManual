@@ -32,7 +32,7 @@ public:
     /// Check if the binary search tree is empty
     /// </summary>
     /// </returns> true if the binary search tree is empty. </returns>
-    virtual bool empty()
+    bool isEmpty()
     {
         return size() == 0;
     };
