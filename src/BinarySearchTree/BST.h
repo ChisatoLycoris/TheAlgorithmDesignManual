@@ -1,5 +1,5 @@
 #pragma once
-#include "iostream"
+#include <iostream>
 #include <stdexcept>
 #include "BinarySearchTree.h"
 
@@ -68,9 +68,11 @@ bool BST<T>::search(BST<T>::Node* root, const T& item) const {
     if (root == nullptr) return false;
     if (root->item > item) {
         return search(root->left, item);
-    } else if (root->item < item) {
+    }
+    else if (root->item < item) {
         return search(root->right, item);
-    } else {
+    }
+    else {
         return true;
     }
 }
@@ -88,10 +90,11 @@ BST<T>::Node* BST<T>::insert(BST<T>::Node* root, const T& item) {
     }
     if (root->item > item) {
         item->left = insert(root->left, item);
-    } else if (root->item < item){
+    }
+    else if (root->item < item) {
         item->right = insert(root->right, item);
     }
-    return root; 
+    return root;
 }
 
 template<class T>
@@ -105,7 +108,7 @@ BST<T>::Node* BST<T>::remove(BST<T>::Node* root, const T& item) {
     if (root->item > item) {
         root->left = remove(root->left, item);
         return root;
-    } 
+    }
     if (root->item < item) {
         root->right = remove(root->right, item);
         return root;
@@ -113,9 +116,11 @@ BST<T>::Node* BST<T>::remove(BST<T>::Node* root, const T& item) {
     Node* deleteNode = root;
     if (root->left == nullptr) {
         root = root->right;
-    } else if (root->right == nullptr){
+    }
+    else if (root->right == nullptr) {
         root = root->left;
-    } else {
+    }
+    else {
         root = removeBiggerSmallest(root);
         root->left = deleteNode->left;
         root->right = deleteNode->right;

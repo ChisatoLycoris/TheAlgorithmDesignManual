@@ -19,7 +19,7 @@
 /// double end queue
 /// </summary>
 /// <typeparam name="T"> the type of the item that the deque hold</typeparam>
-template<class T> 
+template<class T>
 class Deque
 {
 public:

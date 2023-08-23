@@ -1,5 +1,5 @@
 //
-// Created by é»ƒå¨å‡± on 2023/8/14.
+// Created by ¶À«Â³Í on 2023/8/14.
 //
 
 #pragma once
@@ -11,8 +11,8 @@
 
     Requirement:
     You are not allowed to use any C's/C++'s built in data structure class,
-	including dynamic array, vector.
-	All you can use are basic array and the classes built by yourselves.
+    including dynamic array, vector.
+    All you can use are basic array and the classes built by yourselves.
 */
 
 /// <summary>

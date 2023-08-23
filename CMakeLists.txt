@@ -1,12 +1,21 @@
-cmake_minimum_required(VERSION 3.14)
-project(TheAlgorithmDesignManual)
+﻿# CMakeList.txt : CMake project for TheAlgorithmDesignManual, include source and define
+# project specific logic here.
+#
+cmake_minimum_required (VERSION 3.8)
 
-# GoogleTest requires at least C++14
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Enable Hot Reload for MSVC compilers if supported.
+if (POLICY CMP0141)
+  cmake_policy(SET CMP0141 NEW)
+  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+endif()
 
-include_directories(src)
+project ("TheAlgorithmDesignManual")
 
-add_subdirectory(src)
-add_subdirectory(tst)
-add_subdirectory(lib/googletest)
+# Add source to this project's executable.
+add_executable (TheAlgorithmDesignManual "TheAlgorithmDesignManual.cpp" "TheAlgorithmDesignManual.h"  "src/Deque/Deque.h" "src/Deque/ArrayDeque.h" "src/Deque/LinkedListDeque.h" "src/BinarySearchTree/BinarySearchTree.h" "src/BinarySearchTree/BST.h")
+
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET TheAlgorithmDesignManual PROPERTY CXX_STANDARD 20)
+endif()
+
+# TODO: Add tests and install targets if needed.

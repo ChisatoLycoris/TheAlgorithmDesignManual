@@ -33,6 +33,12 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# test direectory
+test/Debug
+test/packages
+test/x64
+test/packages.config
+
 # CMake Build results
 lib/
 build/

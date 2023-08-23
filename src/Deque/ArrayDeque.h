@@ -117,7 +117,7 @@ template<class T>
 void ArrayDeque<T>::resize()
 {
 	double usage = itemQty / (double)arrayLength;
-	if ((usage >= 0.25 && usage <= 0.75) 
+	if ((usage >= 0.25 && usage <= 0.75)
 		|| (usage < 0.25 && arrayLength < 10)) return;
 	int newArrayLength = (usage < 0.25) ?
 		(arrayLength / 2) : (arrayLength * 2);
