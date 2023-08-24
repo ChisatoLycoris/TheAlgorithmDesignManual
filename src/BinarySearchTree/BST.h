@@ -21,6 +21,7 @@ private:
     Node* remove(Node* root, const T& item);
     Node* removeBiggerSmallest(Node* root);
     void printTree(Node* root) const;
+    bool printAll(Node* root, int level) const;
 public:
     BST();
     ~BST();
@@ -29,7 +30,8 @@ public:
     void insertion(const T& item) override;
     void deletion(const T& item) override;
     const T& top() const override;
-    void printTree() const;
+    void printTree() const override;
+    void printAll() const;
 };
 
 template<class T>
@@ -175,4 +177,33 @@ void BST<T>::printTree(BST<T>::Node* root) const {
     printTree(root->left);
     std::cout << root->item << ", ";
     printTree(root->right);
+}
+
+template<class T>
+void BST<T>::printAll() const {
+    printAll(root, 0);
+    std::cout << "\n" << std::endl;
+}
+
+template<class T>
+bool BST<T>::printAll(Node* root, int level) const {
+    if (root == nullptr) {
+        std::cout << " - x";
+        return true;
+    }
+    std::cout << " - " << root->item;
+    /*
+    if (root->right == nullptr && root->left == nullptr) {
+        return true;
+    }
+    */
+    std::string space(level * 4 + 4, ' ');
+    if (printAll(root->right, level + 1)) {
+        std::cout << std::endl;
+        std::cout << space;
+    }
+    if (printAll(root->left, level + 1)) {
+        return true;
+    }
+    return false;
 }

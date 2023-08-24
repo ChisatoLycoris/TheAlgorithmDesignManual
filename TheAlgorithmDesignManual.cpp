@@ -2,33 +2,32 @@
 //
 
 #include "TheAlgorithmDesignManual.h"
-#include "src/Deque/LinkedListDeque.h"
-#include "src/Deque/ArrayDeque.h"
+#include "src/BinarySearchTree/BST.h"
 
 using namespace std;
 
 int main()
 {
-	Deque<int>* deque = new LinkedListDeque<int>();
-	deque->addFirst(1);
-	deque->printDeque();
-	std::cout << "size: " << deque->size() << std::endl;
-	deque->addFirst(2);
-	deque->printDeque();
-	std::cout << "size: " << deque->size() << std::endl;
-	deque->addLast(3);
-	deque->printDeque();
-	std::cout << "size: " << deque->size() << std::endl;
-	deque->addLast(4);
-	deque->printDeque();
-	std::cout << "size: " << deque->size() << std::endl;
-	int remove1 = deque->removeFirst();
-	deque->printDeque();
-	std::cout << "size: " << deque->size() << std::endl;
-	int remove2 = deque->removeLast();
-	deque->printDeque();
-	std::cout << "size: " << deque->size() << std::endl;
+	BST<int> bst;
+	bst.insertion(7);
+	bst.printAll();
+	bst.insertion(7);
+	bst.printAll();
+	bst.insertion(3);
+	bst.printAll();
+	bst.insertion(5);
+	bst.printAll();
+	bst.insertion(2);
+	bst.printAll();
+	bst.insertion(9);
+	bst.printAll();
+	bst.insertion(6);
+	bst.printAll();
+	bst.insertion(4);
+	bst.printAll();
+	bst.insertion(8);
+	bst.printAll();
+	bst.insertion(10);
+	bst.printAll();
 
-	std::cout << "remove1: " << remove1 << ", remove2: " << remove2 << std::endl;
-	delete deque;
 }
