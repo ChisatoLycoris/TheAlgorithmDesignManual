@@ -20,8 +20,8 @@ private:
     Node* insert(Node* root, const T& item);
     Node* remove(Node* root, const T& item);
     Node* removeBiggerSmallest(Node* root);
-    void printTree(Node* root) const;
-    bool printAll(Node* root, int level) const;
+    bool printTree(Node* root, int level) const;
+    void printSequence(Node* root) const;
 public:
     BST();
     ~BST();
@@ -31,7 +31,7 @@ public:
     void deletion(const T& item) override;
     const T& top() const override;
     void printTree() const override;
-    void printAll() const;
+    void printSequence() const;
 };
 
 template<class T>
@@ -119,11 +119,9 @@ typename BST<T>::Node* BST<T>::remove(BST<T>::Node* root, const T& item) {
     Node* deleteNode = root;
     if (root->left == nullptr) {
         root = root->right;
-    }
-    else if (root->right == nullptr) {
+    } else if (root->right == nullptr) {
         root = root->left;
-    }
-    else {
+    } else {
         root = removeBiggerSmallest(root);
         root->left = deleteNode->left;
         root->right = deleteNode->right;
@@ -165,44 +163,39 @@ const T& BST<T>::top() const {
 }
 
 template<class T>
-void BST<T>::printTree() const {
+void BST<T>::printSequence() const {
     std::cout << "[";
-    printTree(root);
+    printSequence(root);
     std::cout << "]" << std::endl;
 }
 
 template<class T>
-void BST<T>::printTree(BST<T>::Node* root) const {
+void BST<T>::printSequence(BST<T>::Node* root) const {
     if (root == nullptr) return;
-    printTree(root->left);
+    printSequence(root->left);
     std::cout << root->item << ", ";
-    printTree(root->right);
+    printSequence(root->right);
 }
 
 template<class T>
-void BST<T>::printAll() const {
-    printAll(root, 0);
+void BST<T>::printTree() const {
+    printTree(root, 0);
     std::cout << "\n" << std::endl;
 }
 
 template<class T>
-bool BST<T>::printAll(Node* root, int level) const {
+bool BST<T>::printTree(Node* root, int level) const {
     if (root == nullptr) {
         std::cout << " - x";
         return true;
     }
     std::cout << " - " << root->item;
-    /*
-    if (root->right == nullptr && root->left == nullptr) {
-        return true;
-    }
-    */
     std::string space(level * 4 + 4, ' ');
-    if (printAll(root->right, level + 1)) {
+    if (printTree(root->right, level + 1)) {
         std::cout << std::endl;
         std::cout << space;
     }
-    if (printAll(root->left, level + 1)) {
+    if (printTree(root->left, level + 1)) {
         return true;
     }
     return false;

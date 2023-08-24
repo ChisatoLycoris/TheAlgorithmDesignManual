@@ -10,24 +10,24 @@ int main()
 {
 	BST<int> bst;
 	bst.insertion(7);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(7);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(3);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(5);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(2);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(9);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(6);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(4);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(8);
-	bst.printAll();
+	bst.printTree();
 	bst.insertion(10);
-	bst.printAll();
+	bst.printTree();
 
 }
