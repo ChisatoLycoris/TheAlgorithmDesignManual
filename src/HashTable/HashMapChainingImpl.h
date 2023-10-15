@@ -21,13 +21,14 @@ private:
 	int arrayLength;
 	LinkedList<Pair>** items;
 	void resize();
+	int getIndex(const K& key) const;
 public:
 	HashMapChainingImpl();
 	~HashMapChainingImpl();
 	int size() const override;
-	void insert(const K& key, const V& value);
-	void remove(const K& key);
-	V get(const K& key) const;
+	void insert(const K& key, const V& value) override;
+	void remove(const K& key) override;
+	V get(const K& key) const override;
 };
 
 template<typename K, typename V>
@@ -60,19 +61,20 @@ inline void HashMapChainingImpl<K, V>::resize() {
 	double usage = itemQty / (double)arrayLength;
 	if ((usage >= 2 && usage <= 5)
 			|| (usage < 2 && arrayLength < 16)) return;
-	int newArrayLength = usage < 2
+	int originalArrayLength = arrayLength;
+	arrayLength = usage < 2
 		? arrayLength * 3 / 7
 		: arrayLength * 7 / 3;
-	LinkedList<Pair>** newItems = new LinkedList<Pair>*[newArrayLength];
-	for (int i = 0; i < newArrayLength; i++) {
+	LinkedList<Pair>** newItems = new LinkedList<Pair>*[arrayLength];
+	for (int i = 0; i < arrayLength; i++) {
 		newItems[i] = new LinkedList<Pair>();
 	}
-	for (int i = 0; i < arrayLength; i++) {
+	for (int i = 0; i < originalArrayLength; i++) {
 		LinkedList<Pair>* list = items[i];
 		for (typename LinkedList<Pair>::Iterator it = list->begin();
 				it != list->end(); it++) {
 			Pair item = *it;
-			int newIdx = std::hash<K>() (item.key) % newArrayLength;
+			int newIdx = getIndex(item.key);
 			LinkedList<Pair>* newlist = newItems[newIdx];
 			newlist->insert(item);
 		}
@@ -80,7 +82,13 @@ inline void HashMapChainingImpl<K, V>::resize() {
 	}
 	delete items;
 	items = newItems;
-	arrayLength = newArrayLength;
+}
+
+template<typename K, typename V>
+inline int HashMapChainingImpl<K, V>::getIndex(const K& key) const
+{
+	int hash = std::hash<K>() (key);
+	return std::abs(hash) % arrayLength;
 }
 
 template<typename K, typename V>
@@ -109,7 +117,7 @@ inline int HashMapChainingImpl<K, V>::size() const {
 template<typename K, typename V>
 inline void HashMapChainingImpl<K, V>::insert(const K& key, const V& value) {
 	Pair* item = new Pair(key, value);
-	int idx = std::hash<K>() (key) % arrayLength;
+	int idx = getIndex(key);
 	LinkedList<Pair>* list = items[idx];
 	if (!list->remove(*item)) {
 		itemQty++;
@@ -121,7 +129,7 @@ inline void HashMapChainingImpl<K, V>::insert(const K& key, const V& value) {
 template<typename K, typename V>
 inline void HashMapChainingImpl<K, V>::remove(const K& key) {
 	Pair* item = new Pair(key, 0);
-	int idx = std::hash<K>() (key) % arrayLength;
+	int idx = getIndex(key);
 	LinkedList<Pair>* list = items[idx];
 	if (list->remove(*item)) {
 		itemQty--;
@@ -133,7 +141,7 @@ template<typename K, typename V>
 inline V HashMapChainingImpl<K, V>::get(const K& key) const
 {
 	Pair* item = new Pair(key, 0);
-	int idx = std::hash<K>() (key) % arrayLength;
+	int idx = getIndex(key);
 	LinkedList<Pair>* list = items[idx];
 	for (typename LinkedList<Pair>::Iterator it = list->begin();
 			it != list->end(); it++) {
