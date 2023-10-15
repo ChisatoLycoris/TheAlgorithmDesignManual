@@ -12,7 +12,12 @@ endif()
 project ("TheAlgorithmDesignManual")
 
 # Add source to this project's executable.
-add_executable (TheAlgorithmDesignManual "TheAlgorithmDesignManual.cpp" "TheAlgorithmDesignManual.h"  "src/Deque/Deque.h" "src/Deque/ArrayDeque.h" "src/Deque/LinkedListDeque.h" "src/BinarySearchTree/BinarySearchTree.h" "src/BinarySearchTree/BST.h")
+add_executable (TheAlgorithmDesignManual "TheAlgorithmDesignManual.cpp" "TheAlgorithmDesignManual.h"  
+	"src/Deque/Deque.h" "src/Deque/ArrayDeque.h" "src/Deque/LinkedListDeque.h" "src/Deque/LinkedList.h"
+	"src/BinarySearchTree/BinarySearchTree.h" "src/BinarySearchTree/BinarySearchTreeImpl.h" 
+	"src/Example/Point.h" 
+	"src/HashTable/HashMap.h" "src/HashTable/HashMapChainingImpl.h" 
+	"src/PriorityQueue/PriorityQueue.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET TheAlgorithmDesignManual PROPERTY CXX_STANDARD 20)

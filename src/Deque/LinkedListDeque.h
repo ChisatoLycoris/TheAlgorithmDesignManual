@@ -63,8 +63,8 @@ LinkedListDeque<T>::~LinkedListDeque()
 {
 	for (Node* temp = sentinel; itemQty >= 0; itemQty--) {
 		Node* currentNode = temp;
-		delete currentNode;
 		temp = temp->next;
+		delete currentNode;
 	}
 }
 

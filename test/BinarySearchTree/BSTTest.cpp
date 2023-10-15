@@ -1,5 +1,5 @@
 #include "../pch.h"
-#include "../../src/BinarySearchTree/BST.h"
+#include "../../src/BinarySearchTree/BinarySearchTreeImpl.h"
 
 TEST(LoopTest, BSTTest) {
 	BST<int> bst;
@@ -9,7 +9,7 @@ TEST(LoopTest, BSTTest) {
 		EXPECT_EQ(bst.size(), i + 1);
 	}
 	EXPECT_FALSE(bst.isEmpty());
-	bst.printTree();
+	bst.printSequence();
 	for (int i = 0; i < 100; i++) {
 		int j = 99 - i;
 		bool b = 99 - i > 49;
