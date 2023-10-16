@@ -26,7 +26,7 @@ public:
     ///     <para>Required time complexity: O(1)</para>
     /// </summary>
     /// <returns> The numbers of key-value pairs in the priority queue. </returns>
-    virtual int size() = 0;
+    virtual int size() const = 0;
 
     /// <summary>
     ///     <para>Check if the priority queue is empty</para>

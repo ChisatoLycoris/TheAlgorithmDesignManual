@@ -17,7 +17,7 @@ add_executable (TheAlgorithmDesignManual "TheAlgorithmDesignManual.cpp" "TheAlgo
 	"src/BinarySearchTree/BinarySearchTree.h" "src/BinarySearchTree/BinarySearchTreeImpl.h" 
 	"src/Example/Point.h" 
 	"src/HashTable/HashMap.h" "src/HashTable/HashMapChainingImpl.h" 
-	"src/PriorityQueue/PriorityQueue.h" "src/HashTable/HashMapProbingImpl.h")
+	"src/PriorityQueue/PriorityQueue.h" "src/HashTable/HashMapProbingImpl.h" "src/PriorityQueue/PriorityQueueHeapImpl.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET TheAlgorithmDesignManual PROPERTY CXX_STANDARD 20)

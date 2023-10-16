@@ -1,7 +1,8 @@
 ﻿// TheAlgorithmDesignManual.cpp : Defines the entry point for the application.
 
+#include <iostream>
 #include "TheAlgorithmDesignManual.h"
-#include "src/HashTable/HashMapProbingImpl.h"
+#include "src/PriorityQueue/PriorityQueueHeapImpl.h"
 
 using namespace std;
 
@@ -18,18 +19,16 @@ public:
 
 int main()
 {
-	HashMapProbingImpl<int, temp> map;
-	
-	map.insert(1, temp(-1));
-	map.insert(2, temp(-2));
-	map.insert(3, temp(-3));
-	map.insert(4, temp(-4));
-	map.insert(5, temp(-5));
-	map.insert(6, temp(-6));
-	for (int i = 1; i < 7; i++) {
-		cout << map.get(i).a << " ";
-	}
-	
-	cout << endl;
+	PriorityQueueHeapImpl<int, temp> pq;
+	pq.put(8, temp(-8));
+	pq.put(7, temp(-7));
+	pq.put(6, temp(-6));
+	pq.put(5, temp(-5));
+	pq.put(4, temp(-4));
+	pq.put(1, temp(-8));
+	pq.put(3, temp(-3));
+	pq.put(2, temp(-2));
+	pq.put(1, temp(-1));
+
 	return 0;
 }
